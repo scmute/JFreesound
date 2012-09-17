@@ -1,4 +1,4 @@
-<project default="jar">
+<project default="all">
 	
 	<target name="clean">
 		<delete dir="build"/>
@@ -13,5 +13,11 @@
         <mkdir dir="build/jar"/>
         <jar destfile="build/jar/JFreesound2.jar" basedir="build/classes"/>
     </target>
+	
+	<target name="doc">
+	      <javadoc sourcepath="src/org/tecnonucleo" destfile="doc/" packagenames="*"/>
+	</target>
+	
+	<target name="all" depends="jar, doc"/>
 
 </project>
