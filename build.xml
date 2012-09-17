@@ -18,7 +18,7 @@
 	
 	<target name="doc">
 		<mkdir dir="doc"/>
-	    <javadoc sourcepath="src" excludepackagenames="org.json, examples" destdir="doc" packagenames="*"/>
+	    <javadoc sourcepath="src" destdir="doc" packagenames="org.tecnonucleo"/>
 	</target>
 
 </project>
