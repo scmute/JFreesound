@@ -49,11 +49,15 @@ public abstract class JFreesound2 {
 	protected final static String URI_SOUND = "/sounds/<sound_id>/";
 	
 	/**
-	 * JFreeSound2 Constructor
-	 * @param pkey
+	 * JFreeSound2 default Constructor
 	 */
 	
 	public JFreesound2(){}
+	
+	/**
+	 * JFreeSound2 Constructor
+	 * @param pkey freesound.org API Key
+	 */
 	
 	public JFreesound2(String pkey){
 		
@@ -63,7 +67,7 @@ public abstract class JFreesound2 {
 	/**
 	 * 
 	 * @param url
-	 * @return
+	 * @return JSONObject from url
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */

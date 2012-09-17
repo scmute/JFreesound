@@ -1,5 +1,7 @@
 <project default="all">
 	
+	<target name="all" depends="jar, doc"/>
+
 	<target name="clean">
 		<delete dir="build"/>
 	</target>
@@ -15,9 +17,8 @@
     </target>
 	
 	<target name="doc">
-	      <javadoc sourcepath="src/org/tecnonucleo" destfile="doc/" packagenames="*"/>
+		<mkdir dir="doc"/>
+	    <javadoc sourcepath="src" destdir="doc" packagenames="org.tecnonucleo"/>
 	</target>
-	
-	<target name="all" depends="jar, doc"/>
 
 </project>
