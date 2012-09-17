@@ -34,7 +34,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 /**
-* JFreesound2.
+* Abstract class.
 *
 * @author Marcos Bernabé Serrano
 *
