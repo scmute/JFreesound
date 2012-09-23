@@ -8,8 +8,14 @@ import org.tecnonucleo.JFS2User;
 public class TestSound {
 
 	public static void main(String[] args) {
-				
-		JFS2Sound js = new JFS2Sound("24d6368c0977435faafeb205dbe3525c", 37733);
+		
+		JFS2Sound js = null;
+		
+		try{
+			js = new JFS2Sound("24d6368c0977435faafeb205dbe3525c", 37733);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		System.out.println(js.getDescription());
 		
@@ -20,7 +26,6 @@ public class TestSound {
 		
 		JFS2User ju = js.getUser();
 		System.out.println(ju.getUsername());
-		
 		
 	}
 	
