@@ -68,23 +68,27 @@ public abstract class JFreesound2 {
 	 * 
 	 * @param url
 	 * @return JSONObject from url
+	 * @throws JSONException 
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
 	
-	public JSONObject readJsonFromUrl(String url) throws MalformedURLException, IOException {
-	  
-	    InputStream is = new URL(url).openStream();
+	public JSONObject readJsonFromUrl(String url) throws JFS2Exception {
+	    
+		InputStream is = null;
+		
 	    try {
-	    	
-	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));    	      
+
+		  is = new URL(url).openStream();
+	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));    	 
+	      is.close();
+	      
 	      return new JSONObject(new JSONTokener(rd));
 
-	    } catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			is.close();
+	    } catch (Exception e) {
+	    	
+			throw new JFS2Exception(e.getMessage());
 	    }
-}
+	}
+
 }
