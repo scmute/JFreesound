@@ -78,25 +78,18 @@ public class JFS2Sound extends JFreesound2{
 	 * Construct a JFS2Sound from a soundId.
 	 * @param apiKey
 	 * @param soundId
+	 * @throws JFS2Exception 
 	 */ 
 	
-	public JFS2Sound(String apiKey, int soundId){
+	public JFS2Sound(String apiKey, int soundId) throws JFS2Exception{
 		
 		this.apiKey = apiKey;
 		
 		String uri = BASE_URI + URI_SOUND.replaceAll("<sound_id>", String.valueOf(soundId)) + "?api_key=" + apiKey;	
 		JSONObject o1;
 		
-		//jfs2req = new JFS2Request();
-
-		try {
-			o1 = readJsonFromUrl(uri);
-			JsonToJFS2Sound(o1);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		o1 = readJsonFromUrl(uri);
+		JsonToJFS2Sound(o1);
 	}
 	
 	/**
@@ -108,15 +101,14 @@ public class JFS2Sound extends JFreesound2{
 		JsonToJFS2Sound(sound);
 	}
 	
-
 	
-	public void savePreviewHqOggToFile(){
+	public void savePreviewHqOggToFile(String fileName) throws JFS2Exception{
 	
 		try {
 			
 			InputStream is = new URL(previewHqOgg).openStream();
 			
-			File f = new File("Archivo.ogg");
+			File f = new File(fileName);
 			OutputStream salida=new FileOutputStream(f);
 			
 			byte[] buf = new byte[1024];
@@ -130,9 +122,9 @@ public class JFS2Sound extends JFreesound2{
 			is.close();
 			
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			throw new JFS2Exception(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new JFS2Exception(e);
 		}
 	}
   
