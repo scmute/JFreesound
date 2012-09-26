@@ -81,9 +81,12 @@ public abstract class JFreesound2 {
 
 		  is = new URL(url).openStream();
 	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));    	 
+	      
+	      JSONObject jsonObj = new JSONObject(new JSONTokener(rd));
+	      
 	      is.close();
 	      
-	      return new JSONObject(new JSONTokener(rd));
+	      return jsonObj;
 
 	    } catch (Exception e) {
 	    	

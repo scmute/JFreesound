@@ -5,7 +5,13 @@ import org.json.JSONObject;
 
 public class JFS2Pager extends JFreesound2{
 	
+	int numResults;
 	JSONArray fields;
+	
+	/**
+	 * Constructor
+	 * @param apiKey freesound.org api key.
+	 */
 	
 	public JFS2Pager(String apiKey){
 		
@@ -39,24 +45,44 @@ public class JFS2Pager extends JFreesound2{
 	
 	/**
 	 * Search sounds with the specified query.
-	 * @param query 
+	 * @param query
+	 * @param page
 	 * @param filter
+	 * @param soundsPerPage
 	 * @throws Exception
 	 */
 	
-	public void search(String query, String filter) throws Exception{
+	public void search(String query, int page, String filter, int soundsPerPage) throws Exception{
 
-		JSONObject o1 = readJsonFromUrl(BASE_URI+URI_SEARCH+"?q=" + query + "&api_key=" + apiKey + "&f=" + filter);
+		JSONObject o1 = readJsonFromUrl(
+				BASE_URI+URI_SEARCH+"?api_key=" + apiKey + "&q=" + query + "&p=" + page + "&f=" + filter + "&sounds_per_page=" + soundsPerPage
+				);
+		
+		this.fields = o1.getJSONArray("sounds");
+		this.numResults = o1.getInt("num_resutls");
+	}
+	
+	/**
+	 * Search sounds with the specified query.
+	 * @param query
+	 * @throws Exception
+	 */
+	
+	public void search(String query) throws Exception{
+
+		JSONObject o1 = readJsonFromUrl(BASE_URI+URI_SEARCH+"?api_key=" + apiKey + "&q=" + query);
+		
+		this.numResults = o1.getInt("num_results");
 		this.fields = (JSONArray) o1.get("sounds");
 	}
 	
 	/**
-	 * Get the lenght of the page.
+	 * Get the length of the page.
 	 * @return Number of the search results.
 	 */
 	
-	public int length(){
-		return fields.length();
+	public int getNumResutls(){
+		return numResults;
 	}
 	
 }
