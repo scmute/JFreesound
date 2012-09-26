@@ -1,6 +1,5 @@
 package examples;
 
-import org.tecnonucleo.JFS2Exception;
 import org.tecnonucleo.JFS2Pager;
 import org.tecnonucleo.JFS2Sound;
 
@@ -9,16 +8,14 @@ public class TestSearch {
 
 	public static void main(String[] args) {
 		
-		JFS2Pager pager = new JFS2Pager("24d6368c0977435faafeb205dbe3525c");
-		
-		System.out.println(pager.length());
+		JFS2Pager pager = new JFS2Pager("");
 		
 		try{
-			pager.getSound(100);
+			//pager.getSound(100);
 			
-			pager.search("rain", "type:wav");
+			pager.search("rain");
 			
-			System.out.println(pager.length());
+			System.out.println(pager.getNumResutls());
 			
 			JFS2Sound sound = pager.getSound(5);
 			
